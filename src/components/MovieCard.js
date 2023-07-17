@@ -5,9 +5,9 @@ import { increaseCounter, decreaseCounter,addMovie ,removeMovie} from "../store/
 
 export default function MovieCard({ movie,isFavoritePage}) {
   
-  const dispatch = useDispatch();
   const [isFavourited, setIsFavourited] = useState(false);
-
+  const dispatch = useDispatch();
+   const title = movie.title.length > 20 ? `${movie.title.slice(0, 20)}...` : movie.title;
   const handleFavouriteClick = () => {
     if (isFavourited) {
       dispatch(decreaseCounter());
@@ -34,7 +34,7 @@ export default function MovieCard({ movie,isFavoritePage}) {
     }
     // setIsFavourited(movie.isFavourited);
   }, [movie.isFavourited]);
-
+  
   const defaultImage =
     "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg";
   return (
@@ -59,7 +59,7 @@ export default function MovieCard({ movie,isFavoritePage}) {
         <div className="d-flex justify-content-between">
           <h5 className="card-title">
             <Link to={`/move-details/${movie.id}`}>
-              {movie.title}
+              {title}
             </Link>
           </h5>
           <h5>
@@ -77,10 +77,3 @@ export default function MovieCard({ movie,isFavoritePage}) {
     </div>
   );
 }
-
- {/* {favourite > 0 ? (
-          <h5><i className="fas fa-heart mx-3 text-danger" onClick={()=>dispatch(decreaseCounter())}></i></h5>
-        ):(
-
-        <h5><i className="fa-heart fa-regular mx-3 text-danger" onClick={()=>dispatch(increaseCounter())}></i></h5>
-        )} */}
