@@ -1,14 +1,23 @@
-import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import axios from "axios";
+
+// components
 import MovieCard from "../components/MovieCard";
-import { useNavigate } from "react-router";
+import Pagination from "../components/Pagination";
 import { LanguageContext } from "../context/language";
+
 export default function Movies() {
-  const { language} = useContext(LanguageContext);
+  
   const [moviesList, getMoviesList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
+  const [totalPages,setTotalPages]=useState(1)
+  const {language} = useContext(LanguageContext);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams({
+    page: 1,
+  });
 
   const showMovies = (movie) => {
     navigate(`/move-details/${movie.id}?title=${movie.title}`, {
@@ -18,29 +27,6 @@ export default function Movies() {
     });
   };
 
-  useEffect(() => {
-    let url = `https://api.themoviedb.org/3/movie/popular?api_key=3ed45b6cde289fd24989aff790c23ee2&page=${currentPage}&language=${language}`;
-    if (searchInput) {
-      url = `https://api.themoviedb.org/3/search/movie?api_key=3ed45b6cde289fd24989aff790c23ee2&query=${searchInput}&page=${currentPage}&language=${language}`;
-    }
-    axios
-      .get(url)
-      .then((res) => {
-        getMoviesList(res.data.results);
-      })
-      .catch((error) => console.log(error));
-  }, [currentPage, searchInput, language]);
-
-  // *****  handel next and prev button ****
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   const handleSearchInput = (event) => {
     setSearchInput(event.target.value);
   };
@@ -53,6 +39,33 @@ export default function Movies() {
     }
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    setSearchParams({ page });
+  };
+  
+  useEffect(() => {
+    const pageParam = searchParams.get("page");
+    if (pageParam) {
+      setCurrentPage(Number(pageParam));
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    let url = `https://api.themoviedb.org/3/movie/popular?api_key=3ed45b6cde289fd24989aff790c23ee2&page=${currentPage}&language=${language}`;
+    if (searchInput) {
+      url = `https://api.themoviedb.org/3/search/movie?api_key=3ed45b6cde289fd24989aff790c23ee2&query=${searchInput}&page=${currentPage}&language=${language}`;
+    }
+    axios
+      .get(url)
+      .then((res) => {
+        getMoviesList(res.data.results);
+        setTotalPages(res.data.total_pages)
+      })
+      .catch((error) => console.log(error));
+  }, [currentPage, searchInput, language]);
+
+  
   return (
     <div>
       <div className="container">
@@ -90,8 +103,7 @@ export default function Movies() {
             })
           ) : (
             <div
-              className="d-flex justify-content-center align-items-center"
-              style={{ height: "70vh" }}
+              className="d-flex justify-content-center align-items-center mt-5"
             >
               <i className="fas fa-spinner fa-spin fa-4x"></i>
             </div>
@@ -99,14 +111,15 @@ export default function Movies() {
         </div>
       </div>
       </div>
-      <div className="row mb-5 d-flex justify-content-between">
-        <button className="btn col-2 btn-info" onClick={handlePrevPage}>
-          Prev
-        </button>
-        <button className="btn col-2 btn-info" onClick={handleNextPage}>
-          Next
-        </button>
-      </div>
+      {/* Render Pagination component */}
+      {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          )}
+
     </div>
   );
 }
