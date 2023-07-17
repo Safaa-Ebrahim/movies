@@ -1,17 +1,19 @@
-import { createContext, useContext } from "react";
-import React, { useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { LanguageContext } from "./language";
 
-
 export let moviesContextList = createContext(0);
+
 export function MoviesContextListProvider(props) {
-  const { language } = useContext(LanguageContext);
+  
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [trendingTv, setTrendingTv] = useState([]);
   const [trendingPeople, setTrendingPeople] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const { language } = useContext(LanguageContext);
 
   async function getTrending(mediaType, callback) {
     let url = `https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=3ed45b6cde289fd24989aff790c23ee2&page=${currentPage}&language=${language}`;
@@ -19,7 +21,9 @@ export function MoviesContextListProvider(props) {
       url = `https://api.themoviedb.org/3/search/${mediaType}?api_key=3ed45b6cde289fd24989aff790c23ee2&query=${searchInput}&page=${currentPage}&language=${language}`;
     }
     let { data } = await axios.get(url);
+    setIsLoading(false)
     callback(data.results);
+    setTotalPages(data.total_pages);
   }
 
   useEffect(() => {
@@ -40,17 +44,6 @@ export function MoviesContextListProvider(props) {
     }
   };
 
-  // *****  handel next and prev button ****
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
   return (
     <moviesContextList.Provider
       value={{
@@ -58,10 +51,12 @@ export function MoviesContextListProvider(props) {
         trendingTv,
         trendingPeople,
         searchInput,
+        totalPages,
+        currentPage,
+        isLoading,
+        setCurrentPage,
         handleSearchInput,
-        handleSearchSubmit,
-        handleNextPage,
-        handlePrevPage,
+        handleSearchSubmit
       }}
     >
       {props.children}
