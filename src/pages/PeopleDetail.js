@@ -28,13 +28,13 @@ export default function PeopleDetail() {
             {peopleDetails.profile_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${peopleDetails.profile_path}`}
-                className="img-fluid rounded-start "
+                className="img-fluid rounded-start mb-3"
                 alt="..."
               />
             ) : (
               <img
                 src={avatar}
-                className="card-img-top movie-poster-image"
+                className="card-img-top movie-poster-image mb-3"
                 alt="default"
               />
             )}
