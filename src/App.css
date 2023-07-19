@@ -16,3 +16,24 @@
     bottom: 0;
     width: 100%;
 } */
+/* ===== start scroll to top button ======= */
+.flow-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    z-index: 1000;
+    -webkit-box-shadow: 1px 0px 6px rgb(203, 202, 202);
+    box-shadow: 1px 0px 6px rgb(203, 202, 202);
+  }
+  @media (max-width: 767px) {
+    .flow-button {
+      right: 2rem;
+      bottom: 2rem;
+    }
+  }
+
+/* ===== end scroll to top button ======= */
