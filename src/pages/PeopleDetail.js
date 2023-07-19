@@ -28,7 +28,7 @@ export default function PeopleDetail() {
             {peopleDetails.profile_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${peopleDetails.profile_path}`}
-                className="img-fluid rounded-start mb-3"
+                className="img-fluid rounded-3 mb-4 mb-md-0"
                 alt="..."
               />
             ) : (

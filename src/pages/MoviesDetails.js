@@ -30,13 +30,13 @@ export default function MoviesDetails() {
             {movieDetails.poster_path ? (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-                className="img-fluid rounded-start "
+                className="img-fluid rounded-3 mb-4 mb-md-0"
                 alt="..."
               />
             ) : (
               <img
                 src={defaultImage}
-                className="card-img-top movie-poster-image  "
+                className="card-img-top movie-poster-image"
                 alt="default"
               />
             )}
