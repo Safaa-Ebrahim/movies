@@ -9,6 +9,14 @@
   --second-font-color: #949cb0;
 }
 
+.btn-bg-dark {
+  background-color:var(--bg-main);
+}
+
+.btn-bg-dark:hover {
+  background-color: var(--light-bg);
+}
+
 body {
   font-family: "Montserrat", sans-serif !important;
   background-color: var(--bg-main);
