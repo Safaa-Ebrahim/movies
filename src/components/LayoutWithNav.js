@@ -1,6 +1,9 @@
+import { Outlet } from 'react-router-dom';
+
+// components
 import Footer from "./Footer";
 import Header from "./Header";
-import { Outlet } from 'react-router-dom';
+import ScrollToTopBtn from "./ScrollToTopBtn";
 
 
 export default function LayoutWithNav() {
@@ -10,7 +13,8 @@ export default function LayoutWithNav() {
         <div className='container my-5'>
           <Outlet />
         </div>
-        <Footer/>
+        <Footer />
+        <ScrollToTopBtn />
       </>
     )
   }
