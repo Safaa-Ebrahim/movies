@@ -24,15 +24,15 @@ export default function Home() {
         {trendingMovies.length > 0 ? (
           trendingMovies.map((movie, i) => {
             return (
-              <div className="col-md-2" key={movie.id}>
+              <div className="col-12 col-sm-6 col-md-2 mb-4 mb-md-1 mt-4 mt-md-0" key={movie.id}>
                 <div className="movie show">
                   <Link to={`/move-details/${movie.id}`}>
                     <img
-                      className="w-100"
+                      className="w-100 rounded-3"
                       src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       alt=""
                     />
-                    <h3 className="h6 my-2">{movie.title}</h3>
+                    <h3 className="h6 my-2 text-center text-md-start">{movie.title}</h3>
                   </Link>
                 </div>
               </div>
@@ -59,15 +59,15 @@ export default function Home() {
         {trendingTv.length > 0 ? (
           trendingTv.map((tv, i) => {
             return (
-              <div className="col-md-2" key={tv.id}>
+              <div className="col-12 col-sm-6 col-md-2 mb-4 mb-md-1 mt-4 mt-md-0" key={tv.id}>
                 <div className="movie show">
                   <Link to={`/tv-details/${tv.id}`}>
                     <img
-                      className="w-100"
+                      className="w-100 rounded-3"
                       src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`}
                       alt=""
                     />
-                    <h3 className="h6 my-2">{tv.name}</h3>
+                    <h3 className="h6 mt-2 mb-3 text-center text-md-start">{tv.name}</h3>
                   </Link>
                 </div>
               </div>
@@ -95,19 +95,19 @@ export default function Home() {
         {trendingPeople.length > 0 ? (
           trendingPeople.map((people, i) => {
             return (
-              <div className="col-md-2" key={people.id}>
+              <div className="col-12 col-sm-6 col-md-2 mb-4 mb-md-1 mt-4 mt-md-0" key={people.id}>
                 <div className="movie show">
                   <Link to={`/people-details/${people.id}`}>
                     {people.profile_path === null ? (
                       <img className="w-100" src={avatar} alt="" />
                     ) : (
                       <img
-                        className="w-100"
+                        className="w-100 rounded-3"
                         src={`https://image.tmdb.org/t/p/w500${people.profile_path}`}
                         alt=""
                       />
                     )}
-                    <h3 className="h6 my-2">{people.name}</h3>
+                    <h3 className="h6 mt-2 mb-3 text-center text-md-start">{people.name}</h3>
                   </Link>
                 </div>
               </div>
