@@ -38,7 +38,7 @@ export default function People() {
   return (
     <>
       <div className="container">
-        <div className="row" style={{ marginTop: "100px" }}>
+        <div className="row d-flex justify-content-center" style={{ marginTop: "100px" }}>
           <form className="d-flex" onSubmit={handleSearchSubmit}>
             <input
               className="form-control me-2"
@@ -63,7 +63,7 @@ export default function People() {
               <div className="row justify-content-center align-items-center">
                 {trendingPeople.map((people, i) => {
                   return (
-                    <div className="col-6 col-md-3 my-3 mt-5" key={people.id}>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-3 mt-5" key={people.id}>
                       <div className="card">
                         <Link to={`/people-details/${people.id}`}>
                           {people.profile_path === null ? (

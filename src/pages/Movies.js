@@ -69,7 +69,7 @@ export default function Movies() {
   return (
     <div>
       <div className="container">
-        <div className="row" style={{ marginTop: "100px" }}>
+        <div className="row d-flex justify-content-center" style={{ marginTop: "100px" }}>
           <div className="row">
           <form className="d-flex" onSubmit={handleSearchSubmit}>
             <input
@@ -92,7 +92,7 @@ export default function Movies() {
               return (
                 <div
                   key={movie.id}
-                  className="col-6 col-md-4  col-lg-3  my-3 mt-5"
+                  className="col-12 col-sm-6 col-md-4 col-lg-3 my-3 mt-5"
                 >
                   <MovieCard
                     movie={movie}

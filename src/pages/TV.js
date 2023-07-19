@@ -10,7 +10,6 @@ export default function TV() {
     searchInput,
     totalPages,
     currentPage,
-    isLoading,
     setCurrentPage,
     handleSearchSubmit,
     handleSearchInput,
@@ -36,7 +35,7 @@ export default function TV() {
   return (
     <>
       <div className="container">
-        <div className="row" style={{ marginTop: "100px" }}>
+        <div className="row d-flex justify-content-center" style={{ marginTop: "100px" }}>
           <form className="d-flex" onSubmit={handleSearchSubmit}>
             <input
               className="form-control me-2"
@@ -54,7 +53,7 @@ export default function TV() {
             {trendingTv.length > 0 ? (
               trendingTv.map((tv, i) => {
                 return (
-                  <div className="col-6 col-md-3 my-3 mt-5" key={tv.id}>
+                  <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-3 mt-5" key={tv.id}>
                     <div className="card">
                       <Link to={`/tv-details/${tv.id}`}>
                         {tv.profile_path === null ? (
