@@ -1,18 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "./../context/language";
-import logo from "./../assets/images/logo.png"
+import logo from "./../assets/images/logo.png";
 export default function Header() {
   const favourite = useSelector((state) => state.favourite.movies.length);
-  const { language,handleLanguageChange } = useContext(LanguageContext);
+  const { language, handleLanguageChange } = useContext(LanguageContext);
+  const navToggleBtn = useRef();
 
   return (
     <div className="fixed-top mb-6">
       <nav className="navbar navbar-expand-lg navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <img src={logo} style={{width:"100px",height:"50px"}} />
+            <img src={logo} style={{ width: "100px", height: "50px" }} />
           </Link>
           <button
             className="navbar-toggler"
@@ -22,38 +23,107 @@ export default function Header() {
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            ref={navToggleBtn}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/home">
+                <Link
+                  className="nav-link"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                  aria-current="page"
+                  to="/home"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" aria-current="page" to="/movies">
+                <Link
+                  className="nav-link"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                  aria-current="page"
+                  to="/movies"
+                >
                   Movies
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/people">
+                <Link
+                  className="nav-link"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                  to="/people"
+                >
                   People
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/tv">
+                <Link
+                  className="nav-link"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                  to="/tv"
+                >
                   TV
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact-us">
+                <Link
+                  className="nav-link"
+                  to="/contact-us"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                >
                   ContactUs
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about-us">
+                <Link
+                  className="nav-link"
+                  to="/about-us"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                >
                   AboutUs
                 </Link>
               </li>
@@ -64,7 +134,15 @@ export default function Header() {
                 <select
                   value={language}
                   className="form-select"
-                  onChange={(e) => handleLanguageChange(e.target.value)}
+                  onChange={(e) => {
+                    handleLanguageChange(e.target.value);
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
                 >
                   <option value="en">English</option>
                   <option value="ar">Arabic</option>
@@ -76,7 +154,18 @@ export default function Header() {
               </div>
 
               <li className="nav-item order-last order-lg-first d-flex align-items-center">
-                <Link to="/favourite" className="nav-link">
+                <Link
+                  to="/favourite"
+                  className="nav-link"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                >
                   <i className="fas fa-heart text-white fa-lg m-1"></i>
                   <span className="mr-0 span-fav-icon">{favourite}</span>
                 </Link>
@@ -84,20 +173,51 @@ export default function Header() {
                 {/* <i className="fas fa-heart mx-3"></i><span className="mr-0">{favourite}</span> */}
               </li>
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/login">
+                <Link
+                  className="nav-link"
+                  aria-current="page"
+                  to="/login"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                >
                   Login
                 </Link>
               </li>
               <li>
-                <Link className="nav-link" aria-current="page" to="/register">
+                <Link
+                  className="nav-link"
+                  aria-current="page"
+                  to="/register"
+                  onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}
+                >
                   Register
                 </Link>
               </li>
-              <li>
-                <span className="nav-link" aria-current="page">
+              {/* <li>
+                <span className="nav-link" aria-current="page" onClick={() => {
+                    if (
+                      navToggleBtn.current.getAttribute("aria-expanded") ===
+                      "true"
+                    ) {
+                      navToggleBtn.current.click();
+                    }
+                  }}>
                   Logout
                 </span>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
