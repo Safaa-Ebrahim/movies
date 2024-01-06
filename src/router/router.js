@@ -6,8 +6,6 @@ import MoviesDetails from "./../pages/MoviesDetails";
 import Favourite from "./../pages/Favourite";
 import NotFound from "./../pages/NotFound";
 import Home from "./../pages/Home";
-import Login from "./../pages/Login";
-import Register from "../pages/Register";
 import LayoutWithNav from "../components/LayoutWithNav";
 import People from "../pages/People";
 import TV from "../pages/TV";
@@ -31,8 +29,6 @@ const AppRoutes = () => {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/about-us" element={<AboutUs />} />
       </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
 

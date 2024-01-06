@@ -169,55 +169,7 @@ export default function Header() {
                   <i className="fas fa-heart text-white fa-lg m-1"></i>
                   <span className="mr-0 span-fav-icon">{favourite}</span>
                 </Link>
-
-                {/* <i className="fas fa-heart mx-3"></i><span className="mr-0">{favourite}</span> */}
               </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  aria-current="page"
-                  to="/login"
-                  onClick={() => {
-                    if (
-                      navToggleBtn.current.getAttribute("aria-expanded") ===
-                      "true"
-                    ) {
-                      navToggleBtn.current.click();
-                    }
-                  }}
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="nav-link"
-                  aria-current="page"
-                  to="/register"
-                  onClick={() => {
-                    if (
-                      navToggleBtn.current.getAttribute("aria-expanded") ===
-                      "true"
-                    ) {
-                      navToggleBtn.current.click();
-                    }
-                  }}
-                >
-                  Register
-                </Link>
-              </li>
-              {/* <li>
-                <span className="nav-link" aria-current="page" onClick={() => {
-                    if (
-                      navToggleBtn.current.getAttribute("aria-expanded") ===
-                      "true"
-                    ) {
-                      navToggleBtn.current.click();
-                    }
-                  }}>
-                  Logout
-                </span>
-              </li> */}
             </ul>
           </div>
         </div>
